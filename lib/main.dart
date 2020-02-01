@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:barcode_scan/barcode_scan.dart';
-import 'package:flutter/services.dart';
+import 'package:recycling_app/screens/item_screen.dart';
+
 import 'package:recycling_app/screens/scan_screen.dart';
 import './screens/tabs_screen.dart';
 
@@ -24,6 +24,7 @@ class _HomePageState extends State<HomePage> {
       initialRoute: '/',
       routes: {
         '/': (ctx) => TabsScreen(),
+        '/item-dashboard': (ctx) => ItemScreen(),
       },
       onUnknownRoute: (settings) {
         return MaterialPageRoute(

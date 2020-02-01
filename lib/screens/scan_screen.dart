@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/services.dart';
+import 'package:recycling_app/screens/item_screen.dart';
 
 class ScanScreen extends StatefulWidget {
   @override
@@ -15,6 +16,9 @@ class _ScanScreenState extends State<ScanScreen> {
   Future _scanBarcode() async {
     try {
       String barcodeResult = await BarcodeScanner.scan();
+      Navigator.of(context).pushNamed(
+        ItemScreen.routeName,
+      );
       setState(() {
         result = barcodeResult;
       });
