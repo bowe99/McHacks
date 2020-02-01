@@ -6,22 +6,18 @@ import 'dart:developer';
 import 'products.dart';
 import 'project.dart';
 
-enum Size {
-  small, medium, large
-}
+// enum Size
 
 class Item{
 
-  final int id;
+  final String id;
   final String name;
-  final String imgUrl;
+  final String url;
   final String brand;
-  final Size size;
+  final String packageSize;
   final String material;
   final String category;
-  final List <Product> product;
-  final Recycle recycling;
-  final List <Project> project;
+
 
 
   final List<Product> listProducts;

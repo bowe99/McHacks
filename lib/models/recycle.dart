@@ -5,6 +5,6 @@ class Recycle{
 
 
 
-  Recycle({this.instructions, this.type, this.mapURL});
+  const Recycle({this.instructions, this.type, this.mapURL});
 
 }
