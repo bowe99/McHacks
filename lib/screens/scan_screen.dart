@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/services.dart';
-import 'package:recycling_app/screens/item_screen.dart';
+import 'package:recycling_app/models/item.dart';
+import 'package:recycling_app/screens/item_tabs_screen.dart';
+
+import '../dummy_data.dart';
 
 class ScanScreen extends StatefulWidget {
   @override
@@ -9,16 +12,20 @@ class ScanScreen extends StatefulWidget {
 }
 
 class _ScanScreenState extends State<ScanScreen> {
-    String result = 'No Result yet';
-
+  String result = 'No Result yet';
 
   @override
   Future _scanBarcode() async {
     try {
       String barcodeResult = await BarcodeScanner.scan();
-      Navigator.of(context).pushNamed(
-        ItemScreen.routeName,
-      );
+      Item foundItem =
+          DUMMY_ITEMS.firstWhere((item) => item.id == barcodeResult);
+      if (foundItem != null) {
+        Navigator.of(context).pushNamed(
+          ItemTabScreen.routeName,
+          arguments: foundItem,
+        );
+      }
       setState(() {
         result = barcodeResult;
       });

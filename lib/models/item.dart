@@ -17,7 +17,7 @@ class Item {
   final List<Project> listProjects;
   final Recycle recycleInfo;
 
-  Item({
+  const Item({
     this.brand,
     this.material,
     @required this.name,

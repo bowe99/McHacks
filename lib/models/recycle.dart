@@ -3,5 +3,5 @@ class Recycle{
   final List<String> instructions;
 
 
-  Recycle({this.instructions, this.type});
+  const Recycle({this.instructions, this.type});
 }
