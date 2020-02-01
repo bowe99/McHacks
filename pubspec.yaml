@@ -25,6 +25,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   barcode_scan: 
   line_awesome_icons: ^1.0.4+2
+  gradient_bottom_navigation_bar: ^1.0.0+4
 
 dev_dependencies:
   flutter_test:
@@ -35,8 +36,9 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter.
-flutter:
-
+flutter: 
+  assets:
+    - assets/logo-01.png
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

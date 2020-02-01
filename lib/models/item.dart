@@ -1,17 +1,28 @@
+import 'package:recycling_app/models/recycle.dart';
+
 import 'package:flutter/foundation.dart';
+import 'dart:developer';
 
-import './project.dart';
-import './products.dart';
-import './recycle.dart';
+import 'products.dart';
+import 'project.dart';
 
-class Item {
-  final String id;
+enum Size {
+  small, medium, large
+}
+
+class Item{
+
+  final int id;
   final String name;
-  final String category;
-  final String url;
+  final String imgUrl;
   final String brand;
-  final String packageSize;
+  final Size size;
   final String material;
+  final String category;
+  final List <Product> product;
+  final Recycle recycling;
+  final List <Project> project;
+
 
   final List<Product> listProducts;
   final List<Project> listProjects;
@@ -31,3 +42,4 @@ class Item {
     this.recycleInfo,
   });
 }
+

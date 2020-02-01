@@ -52,32 +52,29 @@ class _ScanScreenState extends State<ScanScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        Container(
-          height: 500,
-          padding: EdgeInsets.all(30),
-          child: Center(
-            child: Text(
-              result,
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.center,
+    return Container(
+      width: double.infinity,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Container(
+            height: 400,
+            padding: EdgeInsets.all(30),
+            child: Image.asset('assets/logo-01.png', fit:
+            BoxFit.scaleDown),
+          ),
+          Container(
+            padding: EdgeInsets.all(20),
+            child: FloatingActionButton.extended(
+              backgroundColor: Colors.lightGreen[800],
+              onPressed: _scanBarcode,
+              icon: Icon(Icons.camera_alt),
+              label: Text('Scan'),
             ),
           ),
-        ),
-        Container(
-          padding: EdgeInsets.all(20),
-          child: FloatingActionButton.extended(
-            onPressed: _scanBarcode,
-            icon: Icon(Icons.camera_alt),
-            label: Text('Scan'),
-          ),
-        )
-      ],
+        ],
+      ),
     );
   }
 }
