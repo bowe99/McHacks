@@ -1,33 +1,32 @@
+import 'package:recycling_app/models/recycle.dart';
+
 import 'package:flutter/foundation.dart';
+import 'dart:developer';
 
-import './project.dart';
-import './products.dart';
-import './recycle.dart';
+import 'products.dart';
+import 'project.dart';
 
-class Item {
-  final String id;
+enum Size {
+  small, medium, large
+}
+
+class Item{
+
+  final int id;
   final String name;
-  final String category;
-  final String url;
+  final String imgUrl;
   final String brand;
-  final String packageSize;
+  final Size size;
   final String material;
+  final String category;
+  final List <Product> product;
+  final Recycle recycling;
+  final List <Project> project;
 
-  final List<Product> listProducts;
-  final List<Project> listProjects;
-  final Recycle recycleInfo;
+  Item( {@required this.category, @required this.name, @required this.id, @required this.imgUrl, this.brand, @required this.size,@required this.material, this.product, this.recycling, this.project,});
 
-  Item({
-    this.brand,
-    this.material,
-    @required this.name,
-    this.packageSize,
-    @required this.category,
-    @required this.id,
-    @required this.url,
+  sendToDatabase(){
+    log (' id: $id\n name: $name');
+  }
 
-    this.listProducts,
-    this.listProjects,
-    this.recycleInfo,
-  });
 }
