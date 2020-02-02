@@ -47,7 +47,9 @@ class _ItemTabScreenState extends State<ItemTabScreen> {
           _pages[_selectedPageIndex]['title'],
         ),
       ),
-      body: _pages[_selectedPageIndex]['page'],
+      body: SingleChildScrollView(
+        child: _pages[_selectedPageIndex]['page'],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectPage,
         backgroundColor: Theme.of(context).primaryColor,
