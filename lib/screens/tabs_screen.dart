@@ -54,6 +54,7 @@ MaterialColor myOtherColor = MaterialColor(0x849B73, color);
         centerTitle: true,
         title: Text(
           _pages[_selectedPageIndex]['title'],
+          style: Theme.of(context).textTheme.body2,
         ),
         flexibleSpace: Container(
           decoration: BoxDecoration(

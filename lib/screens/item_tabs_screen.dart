@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gradient_bottom_navigation_bar/gradient_bottom_navigation_bar.dart';
 import 'package:line_awesome_icons/line_awesome_icons.dart';
 
 import './item_screen.dart';
@@ -45,19 +46,33 @@ class _ItemTabScreenState extends State<ItemTabScreen> {
       appBar: AppBar(
         title: Text(
           _pages[_selectedPageIndex]['title'],
+          style: Theme.of(context).textTheme.body2
         ),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin:Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: <Color>[
+                Colors.lightGreen[900],
+                Colors.lime[200]
+              ]
+            )
+          ),
       ),
-      body: _pages[_selectedPageIndex]['page'],
-      bottomNavigationBar: BottomNavigationBar(
+      ),
+
+      body: SingleChildScrollView(child: _pages[_selectedPageIndex]['page']),
+      
+      bottomNavigationBar: GradientBottomNavigationBar(
+
         onTap: _selectPage,
-        backgroundColor: Theme.of(context).primaryColor,
-        unselectedItemColor: Colors.white,
-        selectedItemColor: Theme.of(context).accentColor,
+        backgroundColorStart: Colors.lightGreen[900],
+        backgroundColorEnd: Colors.lime[200],
         currentIndex: _selectedPageIndex,
         type: BottomNavigationBarType.shifting,
         items: [
           BottomNavigationBarItem(
-            backgroundColor: Theme.of(context).primaryColor,
             icon: Icon(
               Icons.dashboard,
             ),
@@ -66,7 +81,6 @@ class _ItemTabScreenState extends State<ItemTabScreen> {
             ),
           ),
           BottomNavigationBarItem(
-            backgroundColor: Theme.of(context).primaryColor,
             icon: Icon(
               LineAwesomeIcons.recycle,
             ),
@@ -75,7 +89,6 @@ class _ItemTabScreenState extends State<ItemTabScreen> {
             ),
           ),
           BottomNavigationBarItem(
-            backgroundColor: Theme.of(context).primaryColor,
             icon: Icon(
               Icons.find_replace,
             ),
@@ -84,7 +97,6 @@ class _ItemTabScreenState extends State<ItemTabScreen> {
             ),
           ),
           BottomNavigationBarItem(
-            backgroundColor: Theme.of(context).primaryColor,
             icon: Icon(
               Icons.trending_down,
             ),
