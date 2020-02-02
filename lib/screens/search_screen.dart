@@ -30,8 +30,8 @@ class _SearchScreenState extends State<SearchScreen> {
          TextFormField(
            style: TextStyle(fontFamily: 'Montserrat-Regular', color: Colors.lightGreen[900]),
            decoration: const InputDecoration(
-            hintText: 'What is this product called? *',
-            labelText: 'Name of Product *',
+            hintText: 'What is this product called?',
+            labelText: 'Name of Product',
           ), // The validator receives the text that the user has entered.
            validator: (value) {
               imgURL = value;
@@ -52,8 +52,8 @@ class _SearchScreenState extends State<SearchScreen> {
         TextFormField(
           style: TextStyle(fontFamily: 'Montserrat-Regular', color: Colors.lightGreen[900]),
            decoration: const InputDecoration(
-            hintText: 'What is the material this product is made of *?',
-            labelText: 'Material *',
+            hintText: 'What is the material this product is made of?',
+            labelText: 'Material',
           ), // The validator receives the text that the user has entered.
          validator: (value) {
               material = value;
@@ -64,8 +64,8 @@ class _SearchScreenState extends State<SearchScreen> {
         TextFormField(
           style: TextStyle(fontFamily: 'Montserrat-Regular', color: Colors.lightGreen[900]),
            decoration: const InputDecoration(
-            hintText: 'What is the category of this product*?',
-            labelText: 'Category *',
+            hintText: 'What is the category of this product?',
+            labelText: 'Category',
           ), // The validator receives the text that the user has entered.
          validator: (value) {
               category = value;

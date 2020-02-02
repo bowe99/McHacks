@@ -54,6 +54,7 @@ flutter:
     - asset: assets/Montserrat-SemiBold.ttf
   assets:
     - assets/logo-01.png
+    - assets/recycle3.png
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

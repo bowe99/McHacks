@@ -65,7 +65,7 @@ class ItemWidget extends StatelessWidget {
             
             Container(
               width: double.infinity,
-              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              padding: EdgeInsets.symmetric(horizontal: 20),
               child: Text(
                 name,
                 textAlign: TextAlign.left,
@@ -81,7 +81,6 @@ class ItemWidget extends StatelessWidget {
                 
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     Text(
                       'Category: $category',
