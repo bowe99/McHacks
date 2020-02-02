@@ -158,9 +158,6 @@ PODS:
     - abseil/base/base_internal
     - abseil/base/config
     - abseil/meta/type_traits
-  - barcode_scan (0.0.1):
-    - Flutter
-    - MTBBarcodeScanner
   - BoringSSL-GRPC (0.0.3):
     - BoringSSL-GRPC/Implementation (= 0.0.3)
     - BoringSSL-GRPC/Interface (= 0.0.3)
@@ -335,7 +332,6 @@ PODS:
   - image_picker (0.0.1):
     - Flutter
   - leveldb-library (1.22)
-  - MTBBarcodeScanner (5.0.11)
   - nanopb (0.3.9011):
     - nanopb/decode (= 0.3.9011)
     - nanopb/encode (= 0.3.9011)
@@ -343,9 +339,12 @@ PODS:
   - nanopb/encode (0.3.9011)
   - PromisesObjC (1.2.8)
   - Protobuf (3.11.2)
+  - video_player (0.0.1):
+    - Flutter
+  - video_player_web (0.0.1):
+    - Flutter
 
 DEPENDENCIES:
-  - barcode_scan (from `.symlinks/plugins/barcode_scan/ios`)
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
   - Firebase/MLVisionBarcodeModel
   - Firebase/MLVisionLabelModel
@@ -355,6 +354,8 @@ DEPENDENCIES:
   - Flutter (from `Flutter`)
   - flutter_plugin_android_lifecycle (from `.symlinks/plugins/flutter_plugin_android_lifecycle/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
+  - video_player (from `.symlinks/plugins/video_player/ios`)
+  - video_player_web (from `.symlinks/plugins/video_player_web/ios`)
 
 SPEC REPOS:
   trunk:
@@ -383,14 +384,11 @@ SPEC REPOS:
     - gRPC-Core
     - GTMSessionFetcher
     - leveldb-library
-    - MTBBarcodeScanner
     - nanopb
     - PromisesObjC
     - Protobuf
 
 EXTERNAL SOURCES:
-  barcode_scan:
-    :path: ".symlinks/plugins/barcode_scan/ios"
   cloud_firestore:
     :path: ".symlinks/plugins/cloud_firestore/ios"
   firebase_core:
@@ -405,10 +403,13 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_plugin_android_lifecycle/ios"
   image_picker:
     :path: ".symlinks/plugins/image_picker/ios"
+  video_player:
+    :path: ".symlinks/plugins/video_player/ios"
+  video_player_web:
+    :path: ".symlinks/plugins/video_player_web/ios"
 
 SPEC CHECKSUMS:
   abseil: 18063d773f5366ff8736a050fe035a28f635fd27
-  barcode_scan: 33f586d02270046fc6559135038b34b5754eaa4f
   BoringSSL-GRPC: db8764df3204ccea016e1c8dd15d9a9ad63ff318
   cloud_firestore: c5d1e4d114eecb1dfb535f008435685bcf6063f1
   Firebase: 497158b816d0a86fc31babbd05546fcd7e6083ff
@@ -440,10 +441,11 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
   image_picker: e3eacd46b94694dde7cf2705955cece853aa1a8f
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
-  MTBBarcodeScanner: f453b33c4b7dfe545d8c6484ed744d55671788cb
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   Protobuf: dd1aaea7140debfe4dd0683fb8ef208e527ae153
+  video_player: 69c5f029fac4ffe4fc8a85ea7f7b793709661549
+  video_player_web: da8cadb8274ed4f8dbee8d7171b420dedd437ce7
 
 PODFILE CHECKSUM: 78041e497feb49e6fdf01791e828c2cc277e6ac2
 

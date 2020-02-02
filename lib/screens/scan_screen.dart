@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/services.dart';
 import 'package:recycling_app/models/item.dart';
 import 'package:recycling_app/screens/item_tabs_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../dummy_data.dart';
 import '../models/item.dart';
 
 import 'dart:io';
 
 import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../models/products.dart';
+import '../models/products.dart';
+import '../models/products.dart';
+import '../models/project.dart';
+import '../models/recycle.dart';
+import '../models/recycle.dart';
 
 
 class ScanScreen extends StatefulWidget {
@@ -23,20 +28,23 @@ Future<DocumentSnapshot> getItem(id){
     return Firestore.instance.collection('items').document(id).get()
         .then((DocumentSnapshot ds) {
           return ds;
-        //   this.test = ds;
-        // this.name = ds['name'];
-        // this.imgURL = ds['imageURL'];
-        // this.category = ds['category'];
-        // this.brand = ds['brand'];
-        // this.packagesize = ds['packagesize'];
-        // this.material = ds['material'];
-        // ds['products'].forEach((elm){
-        //   Firestore.instance.collection('products').document(elm).get().then((DocumentSnapshot fs){
-        //     products.add({"value": "dsd"});
-        //   });
-        // });
     });
 }
+
+Future<DocumentSnapshot> getProject(id){
+    return Firestore.instance.collection('projects').document(id).get()
+        .then((DocumentSnapshot ds) {
+          return ds;
+    });
+}
+
+Future<DocumentSnapshot> getProduct(id){
+    return Firestore.instance.collection('products').document(id).get()
+        .then((DocumentSnapshot ds) {
+          return ds;
+    });
+}
+
 
 
 class _ScanScreenState extends State<ScanScreen> {
@@ -118,7 +126,34 @@ class _ScanScreenState extends State<ScanScreen> {
           // Add item that was found with the barcode
           }else{
             DocumentSnapshot foundItem = await getItem(foundValue);
-            Item item = new Item(name: foundItem['name'], category: foundItem['category'], id: foundItem['name'], url: foundItem['imageURL']);
+            List<Project> allProjects = List();
+            List<Product> allProducts = List(); 
+
+
+            // Get Projects
+            foundItem['projects'].forEach((elm) async{
+              DocumentSnapshot foundProject = await getProject(elm);
+              allProjects.add(Project(name: foundProject['name'], url: foundProject['videoURL'], descritption: foundProject['description']));
+            });
+
+            // Get Products
+            foundItem['products'].forEach((elm) async{
+              DocumentSnapshot foundProduct = await getProduct(elm);
+              allProducts.add(Product(name: foundProduct['name'], url: foundProduct['imageURL'], description: foundProduct['description'],
+              price: foundProduct['price'], link: foundProduct['link']));
+            });
+
+            List<String> instructions = [];
+            
+            foundItem['recycle']['instructions'].forEach((elm) {
+              instructions.add(elm);
+            });
+
+            Recycle recycleFound =  Recycle(type: foundItem['recycle']['type'], instructions: instructions);
+
+            Item item = Item(name: foundItem['name'], category: foundItem['category'], id: foundItem['name'], url: foundItem['imageURL'],
+            listProjects: allProjects, listProducts: allProducts, recycleInfo: recycleFound);
+            print(instructions);
             Navigator.of(context).pushNamed(
               ItemTabScreen.routeName,
               arguments: item,
@@ -131,15 +166,9 @@ class _ScanScreenState extends State<ScanScreen> {
         await _labelImage();
         print(result);
     } on PlatformException catch (e) {
-      if (e.code == BarcodeScanner.CameraAccessDenied) {
-        setState(() {
-          result = 'Camera Permission Denied';
-        });
-      } else {
         setState(() {
           result = "Unknown Error $e";
         });
-      }
     } on FormatException {
       setState(() {
         result = "You pressed the back button before scanning something.";
