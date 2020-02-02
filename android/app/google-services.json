@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "497908536172",
+    "firebase_url": "https://recyclemchacks.firebaseio.com",
+    "project_id": "recyclemchacks",
+    "storage_bucket": "recyclemchacks.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:497908536172:android:b5fc92a30d6f34a73a9949",
+        "android_client_info": {
+          "package_name": "com.example.recycling_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "497908536172-ip0vqakrhieb8so72eve1cje0hudlcos.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDU-CI8Q-trcMH9nIHq4OxgmRHqYxFVXe4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "497908536172-ip0vqakrhieb8so72eve1cje0hudlcos.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "497908536172-h8qkcgln0ls4bip9oa3eo8qg6u6bmdnc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.recyclingApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
