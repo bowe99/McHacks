@@ -28,6 +28,7 @@ class _SearchScreenState extends State<SearchScreen> {
         children: <Widget>[
          
          TextFormField(
+           style: TextStyle(fontFamily: 'Montserrat-Regular', color: Colors.lightGreen[900]),
            decoration: const InputDecoration(
             hintText: 'What is this product called? *',
             labelText: 'Name of Product *',
@@ -38,6 +39,7 @@ class _SearchScreenState extends State<SearchScreen> {
             },
         ),
         TextFormField(
+          style: TextStyle(fontFamily: 'Montserrat-Regular', color: Colors.lightGreen[900]),
            decoration: const InputDecoration(
             hintText: 'What is the brand of this product?',
             labelText: 'Brand',
@@ -48,6 +50,7 @@ class _SearchScreenState extends State<SearchScreen> {
             },
         ),
         TextFormField(
+          style: TextStyle(fontFamily: 'Montserrat-Regular', color: Colors.lightGreen[900]),
            decoration: const InputDecoration(
             hintText: 'What is the material this product is made of *?',
             labelText: 'Material *',
@@ -59,6 +62,7 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
 
         TextFormField(
+          style: TextStyle(fontFamily: 'Montserrat-Regular', color: Colors.lightGreen[900]),
            decoration: const InputDecoration(
             hintText: 'What is the category of this product*?',
             labelText: 'Category *',
@@ -69,7 +73,9 @@ class _SearchScreenState extends State<SearchScreen> {
             },
         ),
           Container(
+            padding: EdgeInsets.all(10), 
             child: DropdownButton(
+              style: TextStyle(fontFamily: 'Montserrat-Regular', color: Colors.lightGreen[900]),
                     hint: Text('Please choose a Package Size'), // Not necessary for Option 1
                     value: packageSize,
                     onChanged: (newValue) {
@@ -97,7 +103,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   .showSnackBar(SnackBar(content: Text('Processing Data')));
                 }
             },
-            child: Text('Search'),
+            child: Text('Search',  style: Theme.of(context).textTheme.body1),
         )
               // Add TextFormFields and RaisedButton here.
         ]
