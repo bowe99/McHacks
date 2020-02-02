@@ -47,7 +47,7 @@ class _ProjectItemState extends State<ProjectItem> {
         future: _initializeVideoPlayerFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            print(_controller.value.size.width);
+            
             // If the VideoPlayerController has finished initialization, use
             // the data it provides to limit the aspect ratio of the video.
             return AspectRatio(

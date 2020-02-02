@@ -116,7 +116,7 @@ class _ScanScreenState extends State<ScanScreen> {
             await detectImageLabels(visionImage, cloudLabeler);
             if(findItem == 2){
               setState(() {
-                result = "Notion found!";
+                result = "Nothing found!";
               });
             }else{
               setState(() {
