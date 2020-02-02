@@ -81,6 +81,11 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_web_plugins:
+    dependency: transitive
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   gradient_bottom_navigation_bar:
     dependency: "direct main"
     description:
@@ -144,6 +149,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.5"
+  share:
+    dependency: transitive
+    description:
+      name: share
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.6.3+5"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -205,6 +217,27 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.8"
+  video_player:
+    dependency: "direct main"
+    description:
+      name: video_player
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.10.6"
+  video_player_platform_interface:
+    dependency: transitive
+    description:
+      name: video_player_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.4"
+  video_player_web:
+    dependency: transitive
+    description:
+      name: video_player_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.2"
   xml:
     dependency: transitive
     description:
@@ -212,5 +245,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.5.0"
+  youtube_player:
+    dependency: "direct main"
+    description:
+      name: youtube_player
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.5.0"
 sdks:
   dart: ">=2.4.0 <3.0.0"
+  flutter: ">=1.12.13+hotfix.4 <2.0.0"
