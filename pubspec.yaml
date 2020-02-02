@@ -26,6 +26,8 @@ dependencies:
   barcode_scan: 
   line_awesome_icons: ^1.0.4+2
   gradient_bottom_navigation_bar: ^1.0.0+4
+  video_player:
+  youtube_player: ^3.5.0
 
 dev_dependencies:
   flutter_test:

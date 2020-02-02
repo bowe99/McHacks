@@ -1,10 +1,9 @@
 import 'package:recycling_app/models/recycle.dart';
 
 import 'package:flutter/foundation.dart';
-import 'dart:developer';
 
-import 'products.dart';
-import 'project.dart';
+import './products.dart';
+import './project.dart';
 
 // enum Size
 
@@ -17,8 +16,6 @@ class Item{
   final String packageSize;
   final String material;
   final String category;
-
-
 
   final List<Product> listProducts;
   final List<Project> listProjects;

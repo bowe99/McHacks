@@ -18,6 +18,7 @@ class _ScanScreenState extends State<ScanScreen> {
   Future _scanBarcode() async {
     try {
       String barcodeResult = await BarcodeScanner.scan();
+      print(barcodeResult);
       Item foundItem =
           DUMMY_ITEMS.firstWhere((item) => item.id == barcodeResult);
       if (foundItem != null) {

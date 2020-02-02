@@ -61,9 +61,11 @@ class _ItemTabScreenState extends State<ItemTabScreen> {
           ),
       ),
       ),
+
       body: SingleChildScrollView(child: _pages[_selectedPageIndex]['page']),
       
       bottomNavigationBar: GradientBottomNavigationBar(
+
         onTap: _selectPage,
         backgroundColorStart: Colors.lightGreen[900],
         backgroundColorEnd: Colors.lime[200],
