@@ -8,11 +8,12 @@ class RecycleItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-        elevation: 5,
-        child: Container(
-          child: Text(
-            'Help',
-          ),
-        ));
+      elevation: 5,
+      child: Container(
+        child: Text(
+          'Help',
+        ),
+      ),
+    );
   }
 }
