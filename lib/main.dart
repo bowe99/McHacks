@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
       title: 'Recycle App',
       theme: ThemeData(
         primarySwatch: Colors.green,
-        accentColor: Colors.purple,
+        accentColor: Colors.lightGreen[900],
         textTheme: ThemeData.light().textTheme.copyWith(
                 body1: TextStyle(
                   fontFamily: 'Montserrat-Regular',
