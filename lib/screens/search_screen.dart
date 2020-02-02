@@ -10,7 +10,8 @@ String category;
 String brand;
 String packageSize;
 String material;
-List<String> _categories = ['Cans', 'Containers', 'Wrapping (fruit / veggie)', 'Wrapping (Meats / Fish)'];
+String imgURL;
+//List<String> _categories = ['Cans', 'Containers', 'Wrapping (fruit / veggie)', 'Wrapping (Meats / Fish)'];
 List<String> _sizes = ['Small (< 30 cm)', 'Medium (< 0.5 m)', 'Large (> 0.5 m)'];
 
 class _SearchScreenState extends State<SearchScreen> {
@@ -31,37 +32,42 @@ class _SearchScreenState extends State<SearchScreen> {
             hintText: 'What is this product called? *',
             labelText: 'Name of Product *',
           ), // The validator receives the text that the user has entered.
-          
+           validator: (value) {
+              imgURL = value;
+          return null;
+            },
         ),
         TextFormField(
            decoration: const InputDecoration(
             hintText: 'What is the brand of this product?',
             labelText: 'Brand',
           ), // The validator receives the text that the user has entered.
-          
+          validator: (value) {
+              brand = value;
+          return null;
+            },
         ),
         TextFormField(
            decoration: const InputDecoration(
             hintText: 'What is the material this product is made of *?',
             labelText: 'Material *',
           ), // The validator receives the text that the user has entered.
-         
-        ),
-        DropdownButton(
-            hint: Text('Please choose a category'), // Not necessary for Option 1
-            value: category,
-            onChanged: (newValue) {
-              setState(() {
-                category = newValue;
-              });
+         validator: (value) {
+              material = value;
+          return null;
             },
-            items: _categories.map((location) {
-              return DropdownMenuItem(
-                child: new Text(location),
-                value: location,
-              );
-            }).toList(),
-          ),
+        ),
+
+        TextFormField(
+           decoration: const InputDecoration(
+            hintText: 'What is the category of this product*?',
+            labelText: 'Category *',
+          ), // The validator receives the text that the user has entered.
+         validator: (value) {
+              category = value;
+          return null;
+            },
+        ),
           Container(
             child: DropdownButton(
                     hint: Text('Please choose a Package Size'), // Not necessary for Option 1
@@ -77,7 +83,7 @@ class _SearchScreenState extends State<SearchScreen> {
                  value: location,
                );
              }).toList(),
-           )
+           ),
            ),
         RaisedButton(
               onPressed: () {

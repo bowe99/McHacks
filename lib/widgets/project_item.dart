@@ -69,10 +69,13 @@ class _ProjectItemState extends State<ProjectItem> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
+        Stack(
+        
+        children: <Widget>[
         buildVideoPlayer(),
-        Text(widget.name),
-        Text(widget.description),
-        FloatingActionButton(
+        Container(
+        padding: EdgeInsets.all(10), 
+        child: FloatingActionButton(
           onPressed: () {
             // Wrap the play or pause in a call to `setState`. This ensures the
             // correct icon is shown.
@@ -87,10 +90,23 @@ class _ProjectItemState extends State<ProjectItem> {
             });
           },
           // Display the correct icon depending on the state of the player.
-          child: Icon(
+          child:  Icon(
             _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
-          ),
-        ),
+          )
+        )
+      )
+    ]
+  ),
+      
+        Container(
+          padding: EdgeInsets.all(20), 
+          child:
+        Text(widget.name)),
+        Container(
+          padding: EdgeInsets.all(10), 
+          child:
+        Text(widget.description)
+        )
       ],
     );
   }

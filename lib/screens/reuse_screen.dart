@@ -12,10 +12,10 @@ class _ReuseScreenState extends State<ReuseScreen> {
   Widget build(BuildContext context) {
     final itemFound = ModalRoute.of(context).settings.arguments as Item;
     final itemProjects = itemFound.listProjects[0];
-    return ProjectItem(
+    return ProjectItem( 
       description: itemProjects.descritption,
       name: itemProjects.name,
-      url: itemProjects.url,
+      url: itemProjects.url
     );
   }
 }
