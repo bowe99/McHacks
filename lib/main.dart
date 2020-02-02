@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:recycling_app/screens/item_list_screen.dart';
+import 'package:recycling_app/screens/item_result_screen.dart';
 import 'package:recycling_app/screens/item_tabs_screen.dart';
 import 'package:flutter/services.dart';
+import 'package:recycling_app/screens/reduce_screen.dart';
+import 'package:recycling_app/screens/reuse_screen.dart';
 
 import 'package:recycling_app/screens/scan_screen.dart';
 import './screens/tabs_screen.dart';
@@ -45,6 +49,10 @@ class _HomePageState extends State<HomePage> {
       routes: {
         '/': (ctx) => TabsScreen(),
         ItemTabScreen.routeName: (ctx) => ItemTabScreen(),
+        ReuseScreen.routeName: (ctx) => ReuseScreen(),
+        ReduceScreen.routeName: (ctx) => ReduceScreen(),
+        ItemListScreen.routeName: (ctx) => ItemListScreen(),
+        ItemResultScreen.routeName: (ctx) => ItemResultScreen(),
       },
       onUnknownRoute: (settings) {
         return MaterialPageRoute(

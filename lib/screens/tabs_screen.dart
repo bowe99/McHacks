@@ -3,6 +3,7 @@ import 'package:gradient_bottom_navigation_bar/gradient_bottom_navigation_bar.da
 
 import './scan_screen.dart';
 import './search_screen.dart';
+import 'add_item.dart';
 
 class TabsScreen extends StatefulWidget {
   @override

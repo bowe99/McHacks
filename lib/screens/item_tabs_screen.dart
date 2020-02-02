@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:gradient_bottom_navigation_bar/gradient_bottom_navigation_bar.dart';
 import 'package:line_awesome_icons/line_awesome_icons.dart';
+import 'package:recycling_app/screens/projects_list_screen.dart';
+import 'package:recycling_app/widgets/product_list_item.dart';
 
 import './item_screen.dart';
 import './recycle_screen.dart';
 import './reduce_screen.dart';
 import './reuse_screen.dart';
+import 'product_list_screen.dart';
 
 class ItemTabScreen extends StatefulWidget {
   static const routeName = '/item-tabs';
@@ -24,11 +27,11 @@ class _ItemTabScreenState extends State<ItemTabScreen> {
       'title': 'Recycle',
     },
     {
-      'page': ReuseScreen(),
+      'page': ProjectListScreen(),
       'title': 'Reuse',
     },
     {
-      'page': ReduceScreen(),
+      'page': ProductListScreen(),
       'title': 'Reduce',
     }
   ];

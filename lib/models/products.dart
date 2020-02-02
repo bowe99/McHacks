@@ -5,7 +5,7 @@ class Product {
   final double price;
   final String link;
 
-  Product({
+  const Product({
     this.name,
     this.url,
     this.description,
