@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>497908536172-h8qkcgln0ls4bip9oa3eo8qg6u6bmdnc.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.497908536172-h8qkcgln0ls4bip9oa3eo8qg6u6bmdnc</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAXI5bhIVQn5ER5RhH-rNtcTdiNOzs_2jg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>497908536172</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.recyclingApp</string>
+	<key>PROJECT_ID</key>
+	<string>recyclemchacks</string>
+	<key>STORAGE_BUCKET</key>
+	<string>recyclemchacks.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:497908536172:ios:de5ca45593b38fbc3a9949</string>
+	<key>DATABASE_URL</key>
+	<string>https://recyclemchacks.firebaseio.com</string>
+</dict>
+</plist>
