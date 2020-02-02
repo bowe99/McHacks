@@ -25,7 +25,7 @@ class _ProjectItemState extends State<ProjectItem> {
     // Create an store the VideoPlayerController. The VideoPlayerController
     // offers several different constructors to play videos from assets, files,
     // or the internet.
-    _controller = VideoPlayerController.network(widget.url);
+    _controller = VideoPlayerController.network('https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4');
 
     _initializeVideoPlayerFuture = _controller.initialize();
 
@@ -40,14 +40,10 @@ class _ProjectItemState extends State<ProjectItem> {
   }
 
   Widget buildVideoPlayer() {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.width * (720/1280),
-      child: FutureBuilder(
+    return FutureBuilder(
         future: _initializeVideoPlayerFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            print(_controller.value.size.width);
             // If the VideoPlayerController has finished initialization, use
             // the data it provides to limit the aspect ratio of the video.
             return AspectRatio(
@@ -61,7 +57,7 @@ class _ProjectItemState extends State<ProjectItem> {
             return Center(child: CircularProgressIndicator());
           }
         },
-      ),
+    
     );
   }
 
