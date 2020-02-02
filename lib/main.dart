@@ -26,15 +26,18 @@ class _HomePageState extends State<HomePage> {
         accentColor: Colors.purple,
         textTheme: ThemeData.light().textTheme.copyWith(
                 body1: TextStyle(
-                  color: Color.fromRGBO(122, 122, 122, 1),
-                  fontSize: 24,
+                  fontFamily: 'Montserrat-Regular',
+                  color: Colors.lightGreen[900],
+                  fontSize: 18,
                 ),
                 body2: TextStyle(
-                  color: Color.fromRGBO(20, 51, 51, 1),
+                  fontFamily: 'Montserrat-Regular',
+                  color: Colors.white,
+                  fontSize: 26,
                 ),
                 title: TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold),
+                    fontFamily: 'Montserrat-SemiBold',
+                    fontSize: 32),
               ),
       ),
       initialRoute: '/',

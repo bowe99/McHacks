@@ -70,7 +70,11 @@ class _ScanScreenState extends State<ScanScreen> {
               backgroundColor: Colors.lightGreen[800],
               onPressed: _scanBarcode,
               icon: Icon(Icons.camera_alt),
-              label: Text('Scan'),
+              label: Text('Scan', 
+                style: TextStyle(
+                  fontFamily: 'Montserrat-Regular',
+                  color: Colors.white,
+                  fontSize: 18)),
             ),
           ),
         ],

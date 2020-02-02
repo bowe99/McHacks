@@ -37,6 +37,18 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter: 
+  fonts:
+  - family: Montserrat-Regular
+    fonts:
+    - asset: assets/Montserrat-Regular.ttf
+
+  - family: Montserrat-Italic
+    fonts:
+    - asset: assets/Montserrat-Italic.ttf
+
+  - family: Montserrat-SemiBold
+    fonts:
+    - asset: assets/Montserrat-SemiBold.ttf
   assets:
     - assets/logo-01.png
   # The following line ensures that the Material Icons font is

@@ -62,49 +62,52 @@ class ItemWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Image.network(url),
+            
             Container(
               width: double.infinity,
               padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               child: Text(
                 name,
                 textAlign: TextAlign.left,
-                style: Theme.of(context).textTheme.title,
+                style: TextStyle( color: Colors.lightGreen[900], fontSize: 35, fontWeight: FontWeight.bold),
               ),
             ),
             Container(
-              padding: const EdgeInsets.symmetric(
-                vertical: 10,
-                horizontal: 45,
+                padding: const EdgeInsets.symmetric(
+                  vertical: 10,
+                  horizontal: 45,
+                ),
+                height: 250,
+                
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    Text(
+                      'Category: $category',
+                      style: TextStyle( color: Colors.lightGreen[900]),
+                    ),
+                    Text(
+                      'Brand: $brand',
+                      style: Theme.of(context).textTheme.body1,
+                    ),
+                    Text(
+                      'UPC: $barCode',
+                      style: Theme.of(context).textTheme.body1,
+                    ),
+                    Text(
+                      'Package Size: $packageSize',
+                      style: Theme.of(context).textTheme.body1,
+                    ),
+                    Text(
+                      'Material: $material',
+                      style: Theme.of(context).textTheme.body1,
+                    ),
+                  ],
+                ),
               ),
-              height: 250,
-              
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Text(
-                    'Category: $category',
-                    style: Theme.of(context).textTheme.body1,
-                  ),
-                  Text(
-                    'Brand: $brand',
-                    style: Theme.of(context).textTheme.body1,
-                  ),
-                  Text(
-                    'UPC: $barCode',
-                    style: Theme.of(context).textTheme.body1,
-                  ),
-                  Text(
-                    'Package Size: $packageSize',
-                    style: Theme.of(context).textTheme.body1,
-                  ),
-                  Text(
-                    'Material: $material',
-                    style: Theme.of(context).textTheme.body1,
-                  ),
-                ],
-              ),
-            ),
+            
+            
           ],
         ),
       ],
