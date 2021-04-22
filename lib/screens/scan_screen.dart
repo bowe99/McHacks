@@ -23,7 +23,7 @@ class ScanScreen extends StatefulWidget {
   static const itemList = [
     Item(
       name: 'V8 Vegetable Cocktail',
-      category: 'Beverage can',
+      category: 'Metal',
       id: '06311055702',
       url:
           'https://firebasestorage.googleapis.com/v0/b/recyclemchacks.appspot.com/o/items%2Fv8.jpeg?alt=media&token=10768585-9de1-4f18-86e2-a81e326b1a12',
@@ -35,7 +35,7 @@ class ScanScreen extends StatefulWidget {
         instructions: ['Wash the Can', 'Dry the Can', 'Send to Bin'],
       ),
       listProducts: [
-        Product (
+        Product(
           name: 'Reusable Can',
           description: 'Reusable Can',
           url:
@@ -51,8 +51,7 @@ class ScanScreen extends StatefulWidget {
         )
       ],
     ),
-    
- Item(
+    Item(
       name: 'Green Apple',
       category: 'Fruit',
       id: 'YP7YXe8gfk0ebYTU3F5W',
@@ -63,10 +62,13 @@ class ScanScreen extends StatefulWidget {
       packageSize: 'Small',
       recycleInfo: Recycle(
         type: 'Compost',
-        instructions: ['Throw core into any compost bin!', 'Or make your own compost at home!'],
+        instructions: [
+          'Throw core into any compost bin!',
+          'Or make your own compost at home!'
+        ],
       ),
       listProducts: [
-        Product (
+        Product(
           name: '',
           description: '',
           url:
@@ -78,7 +80,7 @@ class ScanScreen extends StatefulWidget {
           name: 'Plant a tree!',
           descritption: 'Save apple seeds and start your own orchard!',
           url:
-             'https://q7i2y6d5.stackpathcdn.com/wp-content/uploads/2012/08/apple-tree1-400x534.jpg',
+              'https://q7i2y6d5.stackpathcdn.com/wp-content/uploads/2012/08/apple-tree1-400x534.jpg',
         )
       ],
     )
@@ -87,59 +89,17 @@ class ScanScreen extends StatefulWidget {
   _ScanScreenState createState() => _ScanScreenState();
 }
 
-Future<DocumentSnapshot> getItem(id) {
-  return Firestore.instance
-      .collection('items')
-      .document(id)
-      .get()
-      .then((DocumentSnapshot ds) {
-    print(ds);
-    return ds;
-  });
-}
-
-Future<DocumentSnapshot> getCategory(fieldpath) {
-  return Firestore.instance
-      .collection('items')
-      .document(fieldpath)
-      .get()
-      .then((DocumentSnapshot ds) {
-    print(ds);
-    return ds;
-  });
-}
-
-Future<DocumentSnapshot> getProject(id) {
-  return Firestore.instance
-      .collection('projects')
-      .document(id)
-      .get()
-      .then((DocumentSnapshot ds) {
-    return ds;
-  });
-}
-
-Future<DocumentSnapshot> getProduct(id) {
-  return Firestore.instance
-      .collection('products')
-      .document(id)
-      .get()
-      .then((DocumentSnapshot ds) {
-    return ds;
-  });
-}
-
 class _ScanScreenState extends State<ScanScreen> {
-  
   String result = 'No Result yet';
-  File imageFile;
+  String imageFile;
   int findItem = 0;
 
   // Open the Camera App
   Future getImageFile() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.camera);
+    ImagePicker _imagePicker = new ImagePicker();
+    PickedFile image = await _imagePicker.getImage(source: ImageSource.camera);
     setState(() {
-      imageFile = image;
+      imageFile = image.path;
     });
   }
 
@@ -186,94 +146,43 @@ class _ScanScreenState extends State<ScanScreen> {
     }
   }
 
+  Future _labelImage() async {
+    await getImageFile();
+    final FirebaseVisionImage visionImage =
+        FirebaseVisionImage.fromFile(File(imageFile));
+    final BarcodeDetector barcodeDetector =
+        FirebaseVision.instance.barcodeDetector();
+    final ImageLabeler imageLabeler = FirebaseVision.instance
+        .imageLabeler(ImageLabelerOptions(confidenceThreshold: 0.65));
+
+    String foundValue = (await detectBarCodes(visionImage, barcodeDetector));
+
+    // Barcode not found, try image labeling
+    if (findItem == 1) {
+      var values = await detectImageLabels(visionImage, imageLabeler);
+      if (findItem == 2) {
+        setState(() {
+          result = "Nothing found!";
+        });
+      } else {
+        Navigator.of(context).pushNamed(ItemListScreen.routeName, arguments: {
+          'itemList': ScanScreen.itemList,
+          'categoryList': values,
+        });
+
+        setState(() {
+          result = "Found Item.....";
+        });
+      }
+      // Add item that was found with the barcode
+    } else {
+      print("Implement Barcode getter");
+    }
+  }
+
   @override
   Future _scanBarcode() async {
     try {
-      Future _labelImage() async {
-        await getImageFile();
-        final FirebaseVisionImage visionImage =
-            FirebaseVisionImage.fromFile(imageFile);
-        final BarcodeDetector barcodeDetector =
-            FirebaseVision.instance.barcodeDetector();
-        final ImageLabeler cloudLabeler = FirebaseVision.instance
-            .cloudImageLabeler(
-                CloudImageLabelerOptions(confidenceThreshold: 0.85));
-
-        String foundValue =
-            (await detectBarCodes(visionImage, barcodeDetector));
-
-        // Barcode not found, try image labeling
-        if (findItem == 1) {
-          var values = await detectImageLabels(visionImage, cloudLabeler);
-          if (findItem == 2) {
-            setState(() {
-              result = "Nothing found!";
-            });
-          } else {
-            Navigator.of(context)
-                .pushNamed(ItemListScreen.routeName, arguments: {
-              'itemList': ScanScreen.itemList,
-              'categoryList': values,
-            });
-
-            setState(() {
-              result = "Found Item.....";
-            });
-          }
-          // Add item that was found with the barcode
-        } else {
-          DocumentSnapshot foundItem = await getItem(foundValue);
-          List<Project> allProjects = List();
-          List<Product> allProducts = List();
-
-          // Get Projects
-          foundItem['projects'].forEach((elm) async {
-            DocumentSnapshot foundProject = await getProject(elm);
-            allProjects.add(Project(
-                name: foundProject['name'],
-                url: foundProject['videoURL'],
-                descritption: foundProject['description']));
-          });
-
-          // Get Products
-          foundItem['products'].forEach((elm) async {
-            DocumentSnapshot foundProduct = await getProduct(elm);
-            allProducts.add(Product(
-                name: foundProduct['name'],
-                url: foundProduct['imageURL'],
-                description: foundProduct['description'],
-                price: foundProduct['price'],
-                link: foundProduct['link']));
-          });
-
-          List<String> instructions = [];
-
-          foundItem['recycle']['instructions'].forEach((elm) {
-            instructions.add(elm);
-          });
-
-          Recycle recycleFound = Recycle(
-              type: foundItem['recycle']['type'], instructions: instructions);
-
-          Item item = Item(
-              name: foundItem['name'],
-              category: foundItem['category'],
-              id: foundItem['name'],
-              url: foundItem['imageURL'],
-              listProjects: allProjects,
-              listProducts: allProducts,
-              recycleInfo: recycleFound);
-          print(instructions);
-          Navigator.of(context).pushNamed(
-            ItemTabScreen.routeName,
-            arguments: item,
-          );
-          setState(() {
-            result = foundValue;
-          });
-        }
-      }
-
       await _labelImage();
       print(result);
     } on PlatformException catch (e) {
