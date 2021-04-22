@@ -40,7 +40,7 @@ class _TabsScreenState extends State<TabsScreen> {
         centerTitle: true,
         title: Text(
           _pages[_selectedPageIndex]['title'],
-          style: Theme.of(context).textTheme.body2,
+          style: Theme.of(context).textTheme.bodyText2,
         ),
         flexibleSpace: Container(
           decoration: BoxDecoration(

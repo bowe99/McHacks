@@ -32,17 +32,17 @@ class _HomePageState extends State<HomePage> {
         primarySwatch: Colors.green,
         accentColor: Colors.lightGreen[900],
         textTheme: ThemeData.light().textTheme.copyWith(
-              body1: TextStyle(
+              bodyText1: TextStyle(
                 fontFamily: 'Montserrat-Regular',
                 color: Colors.lightGreen[900],
                 fontSize: 18,
               ),
-              body2: TextStyle(
+              bodyText2: TextStyle(
                 fontFamily: 'Montserrat-Regular',
                 color: Colors.white,
                 fontSize: 26,
               ),
-              title: TextStyle(fontFamily: 'Montserrat-SemiBold', fontSize: 32),
+              headline6: TextStyle(fontFamily: 'Montserrat-SemiBold', fontSize: 32),
             ),
       ),
       initialRoute: '/',
@@ -53,11 +53,6 @@ class _HomePageState extends State<HomePage> {
         ReduceScreen.routeName: (ctx) => ReduceScreen(),
         ItemListScreen.routeName: (ctx) => ItemListScreen(),
         ItemResultScreen.routeName: (ctx) => ItemResultScreen(),
-      },
-      onUnknownRoute: (settings) {
-        return MaterialPageRoute(
-          builder: (ctx) => ScanScreen(),
-        );
       },
     );
   }

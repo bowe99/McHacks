@@ -1,42 +1,34 @@
 {
   "project_info": {
-    "project_number": "497908536172",
-    "firebase_url": "https://recyclemchacks.firebaseio.com",
-    "project_id": "recyclemchacks",
-    "storage_bucket": "recyclemchacks.appspot.com"
+    "project_number": "859579169656",
+    "project_id": "soen357-20af7",
+    "storage_bucket": "soen357-20af7.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:497908536172:android:b5fc92a30d6f34a73a9949",
+        "mobilesdk_app_id": "1:859579169656:android:bc6927d9da97badca7e68d",
         "android_client_info": {
           "package_name": "com.example.recycling_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "497908536172-ip0vqakrhieb8so72eve1cje0hudlcos.apps.googleusercontent.com",
+          "client_id": "859579169656-9vnlvm5fds0kq4ai5jm2u129j8gefn5n.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDU-CI8Q-trcMH9nIHq4OxgmRHqYxFVXe4"
+          "current_key": "AIzaSyAdCi0najXcl2aX6WPqj_6w6777zHdTs8M"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "497908536172-ip0vqakrhieb8so72eve1cje0hudlcos.apps.googleusercontent.com",
+              "client_id": "859579169656-9vnlvm5fds0kq4ai5jm2u129j8gefn5n.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "497908536172-h8qkcgln0ls4bip9oa3eo8qg6u6bmdnc.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.recyclingApp"
-              }
             }
           ]
         }
