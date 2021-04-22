@@ -19,6 +19,13 @@ class _ReduceScreenState extends State<ReduceScreen> {
         title: Text(
           productFound.name,
         ),
+        flexibleSpace: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: <Color>[Colors.lightGreen[900], Colors.lime[200]])),
+      ),
       ),
       body: SingleChildScrollView(
         child: ProductItem(
