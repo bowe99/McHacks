@@ -55,10 +55,9 @@ android {
             signingConfig signingConfigs.debug
         }
     }
-    // dependencies {
-    //     api 'com.google.firebase:firebase-ml-vision-barcode-model:16.0.2',
-    //     api 'com.google.firebase:firebase-ml-vision-image-label-model:19.0.0'
-    // }
+    dependencies {
+        api 'com.google.firebase:firebase-ml-vision-image-label-model:20.0.2'
+    }
 }
 
 flutter {
@@ -71,4 +70,8 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     implementation 'com.android.support:multidex:1.0.3'
+    implementation platform('com.google.firebase:firebase-bom:27.0.0')
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-ml-vision:24.0.3'
+    implementation 'com.google.mlkit:barcode-scanning:16.1.1'
 }
