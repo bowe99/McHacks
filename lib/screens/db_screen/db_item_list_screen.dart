@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:recycling_app/models/db_item.dart';
 import 'package:recycling_app/models/item.dart';
+import 'package:recycling_app/screens/db_screen/db_item_tab_screen.dart';
 import 'package:recycling_app/screens/item_tabs_screen.dart';
 import 'package:recycling_app/widgets/item_list_widget.dart';
 
 class DBItemListScreen extends StatelessWidget {
   static const routeName = '/db-item-list';
 
+   void goToIndividualPage(BuildContext context, Item item) {
+    Navigator.of(context).pushNamed(ItemTabScreen.routeName, arguments: item);
+  }
+  
   @override
   Widget build(BuildContext context) {
     final foundItemsAndCategories =
@@ -31,7 +36,9 @@ class DBItemListScreen extends StatelessWidget {
         child: ListView.builder(
           itemCount: foundItems.length,
           itemBuilder: (context, index) {
-            return ItemListWidget(foundItems[index].name, () {});
+            return ItemListWidget(foundItems[index].name, () {
+              Navigator.of(context).pushNamed(DBItemTabScreen.routeName, arguments: foundItems[index]);
+            });
           },
         ),
       ),
