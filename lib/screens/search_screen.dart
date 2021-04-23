@@ -126,24 +126,37 @@ class _SearchScreenState extends State<SearchScreen> {
                     ), // The validator receives the text that the user has entered.
                     controller: categoryController,
                   ),
-                  Container(
-                    padding: EdgeInsets.only(top: 50),
-                    child: FloatingActionButton.extended(
-                      backgroundColor: Colors.lightGreen[800],
-                      onPressed: () async {
-                        setState(() {
-                          name = nameController.text;
-                          category = categoryController.text;
-                        });
-                        await searchDatabase();
-                      },
-                      label: Text('Search',
-                          style: TextStyle(
-                              fontFamily: 'Montserrat-Regular',
-                              color: Colors.white,
-                              fontSize: 18)),
-                    ),
-                  )
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Container(
+                          padding: EdgeInsets.only(top: 50),
+                          child: FloatingActionButton.extended(
+                            backgroundColor: Colors.lightGreen[800],
+                            onPressed: () async {
+                              setState(() {
+                                name = nameController.text;
+                                category = categoryController.text;
+                              });
+                              await searchDatabase();
+                            },
+                            label: Text('Search',
+                                style: TextStyle(
+                                    fontFamily: 'Montserrat-Regular',
+                                    color: Colors.white,
+                                    fontSize: 18)),
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(top: 50),
+                          child: IconButton(
+                            onPressed: () {},
+                            icon:
+                                Icon(Icons.info, color: Colors.lightGreen[800]),
+                            iconSize: 55,
+                          ),
+                        ),
+                      ])
                   // Add TextFormFields and RaisedButton here.
                 ]))));
   }
