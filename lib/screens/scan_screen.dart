@@ -93,6 +93,8 @@ class _ScanScreenState extends State<ScanScreen> {
   String result = 'No Result yet';
   String imageFile;
   int findItem = 0;
+  final Color lime = Colors.lime[800];
+  final Color lightGreen = Colors.lightGreen[800];
 
   // Open the Camera App
   Future getImageFile() async {
@@ -200,6 +202,35 @@ class _ScanScreenState extends State<ScanScreen> {
     }
   }
 
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            'Scanning hints',
+            style: TextStyle(
+              color: lightGreen,
+            ),
+          ),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Got it!'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -216,7 +247,9 @@ class _ScanScreenState extends State<ScanScreen> {
           ),
           Container(
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                _showMyDialog();
+              },
               icon: Icon(Icons.info, color: Colors.lightGreen[800]),
               iconSize: 55,
             ),
