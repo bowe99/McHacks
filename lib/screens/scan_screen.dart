@@ -215,7 +215,40 @@ class _ScanScreenState extends State<ScanScreen> {
           ),
           content: SingleChildScrollView(
             child: ListBody(
-              children: <Widget>[],
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.only(bottom: 10),
+                  child: Text('1. Prepare the object you want to scan.',
+                      style: TextStyle(color: lime)),
+                ),
+                Container(
+                  padding: EdgeInsets.only(bottom: 10),
+                  child: Text('2. Press on the scan button.',
+                      style: TextStyle(color: lime)),
+                ),
+                Container(
+                  padding: EdgeInsets.only(bottom: 10),
+                  child: Text(
+                      '3. Make sure you have a good lighting so that the ' +
+                          'app scanner functions at it\'s best.',
+                      style: TextStyle(color: lime)),
+                ),
+                Container(
+                  padding: EdgeInsets.only(bottom: 10),
+                  child: Text('4. Center the object with your phone camera.',
+                      style: TextStyle(color: lime)),
+                ),
+                Container(
+                  padding: EdgeInsets.only(bottom: 10),
+                  child: Text('5. Capture the image.',
+                      style: TextStyle(color: lime)),
+                ),
+                Container(
+                  padding: EdgeInsets.only(bottom: 10),
+                  child: Text('6. Then see the magic happens.',
+                      style: TextStyle(color: lime)),
+                ),
+              ],
             ),
           ),
           actions: <Widget>[
