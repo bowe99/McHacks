@@ -89,7 +89,10 @@ class _AddItemState extends State<AddItem> {
               children: <Widget>[
                 Container(
                   padding: EdgeInsets.only(bottom: 10),
-                  child: Text('', style: TextStyle(color: Colors.lime[800])),
+                  child: Text(
+                      'Here you can add a specific item ' +
+                          'with its information and store it.',
+                      style: TextStyle(color: Colors.lime[800])),
                 ),
               ],
             ),
