@@ -5,6 +5,9 @@ import 'package:recycling_app/screens/item_list_screen.dart';
 import 'package:recycling_app/screens/item_tabs_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+// Text Animation package
+import 'package:animated_text_kit/animated_text_kit.dart';
+
 import '../models/item.dart';
 
 import 'dart:io';
@@ -283,14 +286,33 @@ class _ScanScreenState extends State<ScanScreen> {
               onPressed: () {
                 _showScanningHints();
               },
-              icon: Icon(Icons.info, color: Colors.lightGreen[800]),
+              icon: Icon(Icons.info, color: lightGreen),
               iconSize: 55,
+            ),
+          ),
+          SizedBox(
+            height: 40,
+            child: DefaultTextStyle(
+              style: const TextStyle(
+                fontSize: 30.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.lightGreen,
+              ),
+              child: AnimatedTextKit(
+                animatedTexts: [
+                  FadeAnimatedText('Scan your item'),
+                ],
+                onTap: () {
+                  print("Animated text press event");
+                },
+                repeatForever: true,
+              ),
             ),
           ),
           Container(
             padding: EdgeInsets.all(20),
             child: FloatingActionButton.extended(
-              backgroundColor: Colors.lightGreen[800],
+              backgroundColor: lightGreen,
               onPressed: _scanBarcode,
               icon: Icon(Icons.camera_alt),
               label: Text('Scan',
