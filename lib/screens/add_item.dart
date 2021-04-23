@@ -58,7 +58,12 @@ class _AddItemState extends State<AddItem> {
     FirebaseFirestore _firebase = FirebaseFirestore.instance;
 
     barcode = await getBarcode();
+    print(barcode);
+    RegExp _barcodeRegExp = new RegExp(r'^\d+$');
 
+    if(!_barcodeRegExp.hasMatch(barcode ?? '')){
+      return;
+    }
     CollectionReference items = _firebase.collection('barcode');
     items.add({
       'barcode': barcode,
