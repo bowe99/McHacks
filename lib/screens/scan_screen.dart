@@ -215,6 +215,13 @@ class _ScanScreenState extends State<ScanScreen> {
             child: Image.asset('assets/logo-01.png', fit: BoxFit.scaleDown),
           ),
           Container(
+            child: IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.info, color: Colors.lightGreen[800]),
+              iconSize: 55,
+            ),
+          ),
+          Container(
             padding: EdgeInsets.all(20),
             child: FloatingActionButton.extended(
               backgroundColor: Colors.lightGreen[800],
