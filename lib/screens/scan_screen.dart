@@ -202,7 +202,7 @@ class _ScanScreenState extends State<ScanScreen> {
     }
   }
 
-  Future<void> _showMyDialog() async {
+  Future<void> _showScanningHints() async {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
@@ -281,7 +281,7 @@ class _ScanScreenState extends State<ScanScreen> {
           Container(
             child: IconButton(
               onPressed: () {
-                _showMyDialog();
+                _showScanningHints();
               },
               icon: Icon(Icons.info, color: Colors.lightGreen[800]),
               iconSize: 55,
