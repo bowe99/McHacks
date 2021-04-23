@@ -97,6 +97,40 @@ class _SearchScreenState extends State<SearchScreen> {
     itemsList.retainWhere((element) => element.barcode == -1);
   }
 
+  Future<void> _showSearchInfo() async {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            'Search Info',
+            style: TextStyle(
+              color: Colors.lightGreen[800],
+            ),
+          ),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.only(bottom: 10),
+                  child: Text('', style: TextStyle(color: Colors.lime[800])),
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Got it!'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -150,7 +184,9 @@ class _SearchScreenState extends State<SearchScreen> {
                         Container(
                           padding: EdgeInsets.only(top: 50),
                           child: IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              _showSearchInfo();
+                            },
                             icon:
                                 Icon(Icons.info, color: Colors.lightGreen[800]),
                             iconSize: 55,
