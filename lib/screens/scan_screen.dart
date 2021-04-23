@@ -217,7 +217,7 @@ class _ScanScreenState extends State<ScanScreen> {
           Container(
             padding: EdgeInsets.all(20),
             child: FloatingActionButton.extended(
-              backgroundColor: Colors.lightGreen[800],
+              backgroundColor: Colors.blue[800],
               onPressed: _scanBarcode,
               icon: Icon(Icons.camera_alt),
               label: Text('Scan',
