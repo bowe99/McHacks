@@ -1,4 +1,7 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:recycling_app/screens/add_item.dart';
+import 'package:recycling_app/screens/db_item_list_screen.dart';
 import 'package:recycling_app/screens/item_list_screen.dart';
 import 'package:recycling_app/screens/item_result_screen.dart';
 import 'package:recycling_app/screens/item_tabs_screen.dart';
@@ -9,7 +12,9 @@ import 'package:recycling_app/screens/reuse_screen.dart';
 import 'package:recycling_app/screens/scan_screen.dart';
 import './screens/tabs_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
@@ -53,6 +58,8 @@ class _HomePageState extends State<HomePage> {
         ReduceScreen.routeName: (ctx) => ReduceScreen(),
         ItemListScreen.routeName: (ctx) => ItemListScreen(),
         ItemResultScreen.routeName: (ctx) => ItemResultScreen(),
+        AddItem.routeName: (ctx) => AddItem(),
+        DBItemListScreen.routeName: (ctx) => DBItemListScreen(),
       },
     );
   }

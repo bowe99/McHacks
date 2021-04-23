@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gradient_bottom_navigation_bar/gradient_bottom_navigation_bar.dart';
+import 'package:recycling_app/screens/add_item.dart';
 
 import './scan_screen.dart';
 import './search_screen.dart';
-import 'add_item.dart';
 
 class TabsScreen extends StatefulWidget {
   @override
@@ -28,13 +28,9 @@ class _TabsScreenState extends State<TabsScreen> {
   }
 
   int _selectedPageIndex = 0;
-  
+
   @override
   Widget build(BuildContext context) {
-
-
-
-        
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -42,22 +38,23 @@ class _TabsScreenState extends State<TabsScreen> {
           _pages[_selectedPageIndex]['title'],
           style: Theme.of(context).textTheme.bodyText2,
         ),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.add),
+              onPressed: () {
+                Navigator.of(context).pushNamed(AddItem.routeName);
+              })
+        ],
         flexibleSpace: Container(
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin:Alignment.centerLeft,
-              end: Alignment.centerRight,
-              colors: <Color>[
-                Colors.lime[200],
-                Colors.lightGreen[900]
-              ]
-            )
-          ),
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: <Color>[Colors.lime[200], Colors.lightGreen[900]])),
         ),
       ),
       body: _pages[_selectedPageIndex]['page'],
       bottomNavigationBar: GradientBottomNavigationBar(
-        
         onTap: _selectPage,
         backgroundColorStart: Colors.lime[200],
         backgroundColorEnd: Colors.lightGreen[900],

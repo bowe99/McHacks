@@ -1,116 +1,144 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:recycling_app/models/db_item.dart';
+import 'package:recycling_app/screens/db_item_list_screen.dart';
 
 class SearchScreen extends StatefulWidget {
   @override
   _SearchScreenState createState() => _SearchScreenState();
 }
 
-String name;
-String category;
-String brand;
-String packageSize;
-String material;
-String imgURL;
-//List<String> _categories = ['Cans', 'Containers', 'Wrapping (fruit / veggie)', 'Wrapping (Meats / Fish)'];
-List<String> _sizes = ['Small (< 30 cm)', 'Medium (< 0.5 m)', 'Large (> 0.5 m)'];
+String name = '';
+String category = '';
+
 
 class _SearchScreenState extends State<SearchScreen> {
-  @override
+  final nameController = TextEditingController();
+  final categoryController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  final itemsList = [];
+
+  Future searchDatabase() {
+    FirebaseFirestore _firebase = FirebaseFirestore.instance;
+    if (name == '') {
+      if (category == '') {
+        _firebase
+            .collection("barcode")
+            .get()
+            .then((QuerySnapshot querySnapshot) {
+          querySnapshot.docs.forEach((doc) {
+            print(doc['barcode']);
+            setState(() {
+              itemsList.add(new DBItem(
+                  barcode: doc['barcode'],
+                  categories: doc['category'],
+                  name: doc['name']));
+            });
+          });
+        });
+      } else {
+        _firebase
+            .collection("barcode")
+            .where("category", arrayContains: category)
+            .get()
+            .then((QuerySnapshot querySnapshot) {
+          querySnapshot.docs.forEach((doc) {
+            print(doc['barcode']);
+            setState(() {
+              itemsList.add(new DBItem(
+                  barcode: doc['barcode'],
+                  categories: doc['category'],
+                  name: doc['name']));
+            });
+          });
+        });
+      }
+    } else {
+      if (category == '') {
+        _firebase
+            .collection("barcode")
+            .where('name', isEqualTo: name)
+            .get()
+            .then((QuerySnapshot querySnapshot) {
+          querySnapshot.docs.forEach((doc) {
+            print(doc['barcode']);
+            setState(() {
+              itemsList.add(new DBItem(
+                  barcode: doc['barcode'],
+                  categories: doc['category'],
+                  name: doc['name']));
+            });
+          });
+        });
+      } else {
+        _firebase
+            .collection("barcode")
+            .where('name', isEqualTo: name)
+            .where("category", arrayContains: category)
+            .get()
+            .then((QuerySnapshot querySnapshot) {
+          querySnapshot.docs.forEach((doc) {
+            print(doc['barcode']);
+
+            setState(() {
+              itemsList.add(new DBItem(
+                  barcode: doc['barcode'],
+                  categories: doc['category'],
+                  name: doc['name']));
+            });
+          });
+        });
+      }
+    }
+
+    Navigator.of(context).pushNamed(DBItemListScreen.routeName, arguments: {
+      'itemList': itemsList,
+    });
+
+    itemsList.retainWhere((element) => element.barcode == -1);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Form(
-      key: _formKey,
-      child: SingleChildScrollView 
-      (child: Container(
-        padding: EdgeInsets.all(50), 
-        alignment: Alignment.topRight,
-        child:Column(
-        children: <Widget>[
-         
-         TextFormField(
-           style: TextStyle(fontFamily: 'Montserrat-Regular', color: Colors.lightGreen[900]),
-           decoration: const InputDecoration(
-            hintText: 'What is this product called?',
-            labelText: 'Name of Product',
-          ), // The validator receives the text that the user has entered.
-           validator: (value) {
-              imgURL = value;
-          return null;
-            },
-        ),
-        TextFormField(
-          style: TextStyle(fontFamily: 'Montserrat-Regular', color: Colors.lightGreen[900]),
-           decoration: const InputDecoration(
-            hintText: 'What is the brand of this product?',
-            labelText: 'Brand',
-          ), // The validator receives the text that the user has entered.
-          validator: (value) {
-              brand = value;
-          return null;
-            },
-        ),
-        TextFormField(
-          style: TextStyle(fontFamily: 'Montserrat-Regular', color: Colors.lightGreen[900]),
-           decoration: const InputDecoration(
-            hintText: 'What is the material this product is made of?',
-            labelText: 'Material',
-          ), // The validator receives the text that the user has entered.
-         validator: (value) {
-              material = value;
-          return null;
-            },
-        ),
-
-        TextFormField(
-          style: TextStyle(fontFamily: 'Montserrat-Regular', color: Colors.lightGreen[900]),
-           decoration: const InputDecoration(
-            hintText: 'What is the category of this product?',
-            labelText: 'Category',
-          ), // The validator receives the text that the user has entered.
-         validator: (value) {
-              category = value;
-          return null;
-            },
-        ),
-          Container(
-            padding: EdgeInsets.all(10), 
-            child: DropdownButton(
-              style: TextStyle(fontFamily: 'Montserrat-Regular', color: Colors.lightGreen[900]),
-                    hint: Text('Please choose a Package Size'), // Not necessary for Option 1
-                    value: packageSize,
-                    onChanged: (newValue) {
-                    setState(() {
-                    packageSize = newValue;
-               });
-             },
-             items: _sizes.map((location) {
-               return DropdownMenuItem(
-                 child: new Text(location),
-                 value: location,
-               );
-             }).toList(),
-           ),
-           ),
-        RaisedButton(
-              onPressed: () {
-              // Validate returns true if the form is valid, otherwise false.
-              if (_formKey.currentState.validate()) {
-              // If the form is valid, display a snackbar. In the real world,
-              // you'd often call a server or save the information in a database.
-
-                  Scaffold
-                  .of(context)
-                  .showSnackBar(SnackBar(content: Text('Processing Data')));
-                }
-            },
-            child: Text('Search',  style: Theme.of(context).textTheme.body1),
-        )
-              // Add TextFormFields and RaisedButton here.
-        ]
-     )
-      )
-      )
-    );
+        key: _formKey,
+        child: SingleChildScrollView(
+            child: Container(
+                padding: EdgeInsets.all(50),
+                alignment: Alignment.topRight,
+                child: Column(children: <Widget>[
+                  TextFormField(
+                    style: TextStyle(
+                        fontFamily: 'Montserrat-Regular',
+                        color: Colors.lightGreen[900]),
+                    decoration: const InputDecoration(
+                      hintText: 'What is this product called?',
+                      labelText: 'Name of Product',
+                    ), // The validator receives the text that the user has entered.
+                    controller: nameController,
+                  ),
+                  TextFormField(
+                    style: TextStyle(
+                        fontFamily: 'Montserrat-Regular',
+                        color: Colors.lightGreen[900]),
+                    decoration: const InputDecoration(
+                      hintText: 'What is the category of this product?',
+                      labelText: 'Category',
+                    ), // The validator receives the text that the user has entered.
+                    controller: categoryController,
+                  ),
+                  ElevatedButton(
+                    onPressed: () async {
+                      setState(() {
+                        name = nameController.text;
+                        category = categoryController.text;
+                      });
+                      await searchDatabase();
+                    },
+                    child: Text('Search',
+                        style: Theme.of(context).textTheme.bodyText1),
+                  )
+                  // Add TextFormFields and RaisedButton here.
+                ]))));
   }
 }
-
