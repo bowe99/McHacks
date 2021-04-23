@@ -25,7 +25,7 @@ class _AddItemState extends State<AddItem> {
     return image.path;
   }
 
-    // Detect Barcode
+  // Detect Barcode
   detectBarCodes(
       FirebaseVisionImage visionImage, BarcodeDetector barcodeDetector) async {
     try {
@@ -42,16 +42,15 @@ class _AddItemState extends State<AddItem> {
       barcodeDetector.close();
     }
   }
-  
+
   Future<String> getBarcode() async {
     String filePath = await getImageFile();
     final FirebaseVisionImage visionImage =
         FirebaseVisionImage.fromFile(File(filePath));
     final BarcodeDetector barcodeDetector =
         FirebaseVision.instance.barcodeDetector();
-    
-    return (await detectBarCodes(visionImage, barcodeDetector));
 
+    return (await detectBarCodes(visionImage, barcodeDetector));
   }
 
   Future<void> createItem() async {
@@ -61,7 +60,7 @@ class _AddItemState extends State<AddItem> {
     print(barcode);
     RegExp _barcodeRegExp = new RegExp(r'^\d+$');
 
-    if(!_barcodeRegExp.hasMatch(barcode ?? '')){
+    if (!_barcodeRegExp.hasMatch(barcode ?? '')) {
       return;
     }
     CollectionReference items = _firebase.collection('barcode');
@@ -112,17 +111,25 @@ class _AddItemState extends State<AddItem> {
                 controller:
                     categoryController, // The validator receives the text that the user has entered.
               ),
-              ElevatedButton(
-                onPressed: () async{
-                  setState(() {
-                    name = nameController.text;
-                    category = categoryController.text;
-                  });
-                  
-                  await createItem();
-                },
-                child: Text('Submit'),
-              ),
+              Container(
+                padding: EdgeInsets.only(top: 50),
+                child: FloatingActionButton.extended(
+                  backgroundColor: Colors.lightGreen[800],
+                  onPressed: () async {
+                    setState(() {
+                      name = nameController.text;
+                      category = categoryController.text;
+                    });
+
+                    await createItem();
+                  },
+                  label: Text('Submit',
+                      style: TextStyle(
+                          fontFamily: 'Montserrat-Regular',
+                          color: Colors.white,
+                          fontSize: 18)),
+                ),
+              )
             ],
           ),
         ),

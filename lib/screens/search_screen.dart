@@ -11,7 +11,6 @@ class SearchScreen extends StatefulWidget {
 String name = '';
 String category = '';
 
-
 class _SearchScreenState extends State<SearchScreen> {
   final nameController = TextEditingController();
   final categoryController = TextEditingController();
@@ -127,16 +126,23 @@ class _SearchScreenState extends State<SearchScreen> {
                     ), // The validator receives the text that the user has entered.
                     controller: categoryController,
                   ),
-                  ElevatedButton(
-                    onPressed: () async {
-                      setState(() {
-                        name = nameController.text;
-                        category = categoryController.text;
-                      });
-                      await searchDatabase();
-                    },
-                    child: Text('Search',
-                        style: Theme.of(context).textTheme.bodyText1),
+                  Container(
+                    padding: EdgeInsets.only(top: 50),
+                    child: FloatingActionButton.extended(
+                      backgroundColor: Colors.lightGreen[800],
+                      onPressed: () async {
+                        setState(() {
+                          name = nameController.text;
+                          category = categoryController.text;
+                        });
+                        await searchDatabase();
+                      },
+                      label: Text('Search',
+                          style: TextStyle(
+                              fontFamily: 'Montserrat-Regular',
+                              color: Colors.white,
+                              fontSize: 18)),
+                    ),
                   )
                   // Add TextFormFields and RaisedButton here.
                 ]))));

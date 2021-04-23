@@ -5,6 +5,9 @@ import 'package:recycling_app/screens/item_list_screen.dart';
 import 'package:recycling_app/screens/item_tabs_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+// Text Animation package
+import 'package:animated_text_kit/animated_text_kit.dart';
+
 import '../models/item.dart';
 
 import 'dart:io';
@@ -93,6 +96,8 @@ class _ScanScreenState extends State<ScanScreen> {
   String result = 'No Result yet';
   String imageFile;
   int findItem = 0;
+  final Color lime = Colors.lime[800];
+  final Color lightGreen = Colors.lightGreen[800];
 
   // Open the Camera App
   Future getImageFile() async {
@@ -200,6 +205,68 @@ class _ScanScreenState extends State<ScanScreen> {
     }
   }
 
+  Future<void> _showScanningHints() async {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            'Scanning hints',
+            style: TextStyle(
+              color: lightGreen,
+            ),
+          ),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.only(bottom: 10),
+                  child: Text('1. Prepare the object you want to scan.',
+                      style: TextStyle(color: lime)),
+                ),
+                Container(
+                  padding: EdgeInsets.only(bottom: 10),
+                  child: Text('2. Press on the scan button.',
+                      style: TextStyle(color: lime)),
+                ),
+                Container(
+                  padding: EdgeInsets.only(bottom: 10),
+                  child: Text(
+                      '3. Make sure you have a good lighting so that the ' +
+                          'app scanner functions at it\'s best.',
+                      style: TextStyle(color: lime)),
+                ),
+                Container(
+                  padding: EdgeInsets.only(bottom: 10),
+                  child: Text('4. Center the object with your phone camera.',
+                      style: TextStyle(color: lime)),
+                ),
+                Container(
+                  padding: EdgeInsets.only(bottom: 10),
+                  child: Text('5. Capture the image.',
+                      style: TextStyle(color: lime)),
+                ),
+                Container(
+                  padding: EdgeInsets.only(bottom: 10),
+                  child: Text('6. Then see the magic happens.',
+                      style: TextStyle(color: lime)),
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Got it!'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -215,9 +282,37 @@ class _ScanScreenState extends State<ScanScreen> {
             child: Image.asset('assets/logo-01.png', fit: BoxFit.scaleDown),
           ),
           Container(
+            child: IconButton(
+              onPressed: () {
+                _showScanningHints();
+              },
+              icon: Icon(Icons.info, color: lightGreen),
+              iconSize: 55,
+            ),
+          ),
+          SizedBox(
+            height: 40,
+            child: DefaultTextStyle(
+              style: const TextStyle(
+                fontSize: 30.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.lightGreen,
+              ),
+              child: AnimatedTextKit(
+                animatedTexts: [
+                  FadeAnimatedText('Scan your item'),
+                ],
+                onTap: () {
+                  print("Animated text press event");
+                },
+                repeatForever: true,
+              ),
+            ),
+          ),
+          Container(
             padding: EdgeInsets.all(20),
             child: FloatingActionButton.extended(
-              backgroundColor: Colors.lightGreen[800],
+              backgroundColor: lightGreen,
               onPressed: _scanBarcode,
               icon: Icon(Icons.camera_alt),
               label: Text('Scan',
