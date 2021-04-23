@@ -73,6 +73,43 @@ class _AddItemState extends State<AddItem> {
     }).catchError((error) => print("Failed to add item: $error"));
   }
 
+  Future<void> _showAddItemInfo() async {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            'Add Item Info',
+            style: TextStyle(
+              color: Colors.lightGreen[800],
+            ),
+          ),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.only(bottom: 10),
+                  child: Text(
+                      'Here you can add a specific item ' +
+                          'with its information and store it.',
+                      style: TextStyle(color: Colors.lime[800])),
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Got it!'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final nameController = TextEditingController();
@@ -111,25 +148,39 @@ class _AddItemState extends State<AddItem> {
                 controller:
                     categoryController, // The validator receives the text that the user has entered.
               ),
-              Container(
-                padding: EdgeInsets.only(top: 50),
-                child: FloatingActionButton.extended(
-                  backgroundColor: Colors.lightGreen[800],
-                  onPressed: () async {
-                    setState(() {
-                      name = nameController.text;
-                      category = categoryController.text;
-                    });
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Container(
+                      padding: EdgeInsets.only(top: 50),
+                      child: FloatingActionButton.extended(
+                        backgroundColor: Colors.lightGreen[800],
+                        onPressed: () async {
+                          setState(() {
+                            name = nameController.text;
+                            category = categoryController.text;
+                          });
 
-                    await createItem();
-                  },
-                  label: Text('Submit',
-                      style: TextStyle(
-                          fontFamily: 'Montserrat-Regular',
-                          color: Colors.white,
-                          fontSize: 18)),
-                ),
-              )
+                          await createItem();
+                        },
+                        label: Text('Submit',
+                            style: TextStyle(
+                                fontFamily: 'Montserrat-Regular',
+                                color: Colors.white,
+                                fontSize: 18)),
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(top: 50),
+                      child: IconButton(
+                        onPressed: () {
+                          _showAddItemInfo();
+                        },
+                        icon: Icon(Icons.info, color: Colors.lightGreen[800]),
+                        iconSize: 55,
+                      ),
+                    ),
+                  ])
             ],
           ),
         ),

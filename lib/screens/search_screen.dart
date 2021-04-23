@@ -97,6 +97,43 @@ class _SearchScreenState extends State<SearchScreen> {
     itemsList.retainWhere((element) => element.barcode == -1);
   }
 
+  Future<void> _showSearchInfo() async {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            'Search Info',
+            style: TextStyle(
+              color: Colors.lightGreen[800],
+            ),
+          ),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.only(bottom: 10),
+                  child: Text(
+                      'Here you can search for the items that you have' +
+                          ' stored before.',
+                      style: TextStyle(color: Colors.lime[800])),
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Got it!'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -126,24 +163,39 @@ class _SearchScreenState extends State<SearchScreen> {
                     ), // The validator receives the text that the user has entered.
                     controller: categoryController,
                   ),
-                  Container(
-                    padding: EdgeInsets.only(top: 50),
-                    child: FloatingActionButton.extended(
-                      backgroundColor: Colors.lightGreen[800],
-                      onPressed: () async {
-                        setState(() {
-                          name = nameController.text;
-                          category = categoryController.text;
-                        });
-                        await searchDatabase();
-                      },
-                      label: Text('Search',
-                          style: TextStyle(
-                              fontFamily: 'Montserrat-Regular',
-                              color: Colors.white,
-                              fontSize: 18)),
-                    ),
-                  )
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Container(
+                          padding: EdgeInsets.only(top: 50),
+                          child: FloatingActionButton.extended(
+                            backgroundColor: Colors.lightGreen[800],
+                            onPressed: () async {
+                              setState(() {
+                                name = nameController.text;
+                                category = categoryController.text;
+                              });
+                              await searchDatabase();
+                            },
+                            label: Text('Search',
+                                style: TextStyle(
+                                    fontFamily: 'Montserrat-Regular',
+                                    color: Colors.white,
+                                    fontSize: 18)),
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(top: 50),
+                          child: IconButton(
+                            onPressed: () {
+                              _showSearchInfo();
+                            },
+                            icon:
+                                Icon(Icons.info, color: Colors.lightGreen[800]),
+                            iconSize: 55,
+                          ),
+                        ),
+                      ])
                   // Add TextFormFields and RaisedButton here.
                 ]))));
   }
