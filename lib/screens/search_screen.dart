@@ -113,7 +113,10 @@ class _SearchScreenState extends State<SearchScreen> {
               children: <Widget>[
                 Container(
                   padding: EdgeInsets.only(bottom: 10),
-                  child: Text('', style: TextStyle(color: Colors.lime[800])),
+                  child: Text(
+                      'Here you can search for the items that you have' +
+                          ' stored before.',
+                      style: TextStyle(color: Colors.lime[800])),
                 ),
               ],
             ),
