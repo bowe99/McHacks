@@ -1,120 +1,127 @@
+import 'dart:io';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:recycling_app/screens/item_result_screen.dart';
 
-class AddItem extends StatelessWidget {
+class AddItem extends StatefulWidget {
+  static const routeName = '/add';
+
+  @override
+  _AddItemState createState() => _AddItemState();
+}
+
+String name;
+String category;
+String barcode;
+bool success;
+
+class _AddItemState extends State<AddItem> {
+  Future<String> getImageFile() async {
+    ImagePicker _imagePicker = new ImagePicker();
+    PickedFile image = await _imagePicker.getImage(source: ImageSource.camera);
+    return image.path;
+  }
+
+    // Detect Barcode
+  detectBarCodes(
+      FirebaseVisionImage visionImage, BarcodeDetector barcodeDetector) async {
+    try {
+      final List<Barcode> barCodes =
+          await barcodeDetector.detectInImage(visionImage);
+      if (barCodes.length == 0) {
+        success = true;
+      } else {
+        return (barCodes[0].rawValue);
+      }
+    } catch (e) {
+      print(e.toString());
+    } finally {
+      barcodeDetector.close();
+    }
+  }
+  
+  Future<String> getBarcode() async {
+    String filePath = await getImageFile();
+    final FirebaseVisionImage visionImage =
+        FirebaseVisionImage.fromFile(File(filePath));
+    final BarcodeDetector barcodeDetector =
+        FirebaseVision.instance.barcodeDetector();
+    
+    return (await detectBarCodes(visionImage, barcodeDetector));
+
+  }
+
+  Future<void> createItem() async {
+    FirebaseFirestore _firebase = FirebaseFirestore.instance;
+
+    barcode = await getBarcode();
+
+    CollectionReference items = _firebase.collection('barcode');
+    items.add({
+      'barcode': barcode,
+      'category': [category],
+      'name': name
+    }).then((value) {
+      print("Item Added");
+    }).catchError((error) => print("Failed to add item: $error"));
+  }
+
   @override
   Widget build(BuildContext context) {
-    TextEditingController nameController;
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.7,
-      child: Column(
-        children: <Widget>[
-          TextField(
-            controller: nameController,
-            decoration: const InputDecoration(
-              hintText: 'What is this product called? *',
-              labelText: 'Name of Product *',
-            ),
+    final nameController = TextEditingController();
+    final categoryController = TextEditingController();
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Add Item', style: Theme.of(context).textTheme.bodyText2),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: <Color>[Colors.lightGreen[900], Colors.lime[200]])),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.all(50),
+          alignment: Alignment.topRight,
+          child: Column(
+            children: <Widget>[
+              TextField(
+                decoration: const InputDecoration(
+                  hintText: 'What is this product called? *',
+                  labelText: 'Name of Product *',
+                ),
+                controller:
+                    nameController, // The validator receives the text that the user has entered.
+              ),
+              TextField(
+                decoration: const InputDecoration(
+                  hintText: 'What is this product called? *',
+                  labelText: 'Name of Category *',
+                ),
+                controller:
+                    categoryController, // The validator receives the text that the user has entered.
+              ),
+              ElevatedButton(
+                onPressed: () async{
+                  setState(() {
+                    name = nameController.text;
+                    category = categoryController.text;
+                  });
+                  
+                  await createItem();
+                },
+                child: Text('Submit'),
+              ),
+            ],
           ),
-          RaisedButton(
-            child: Text('Submit'),
-            onPressed: () {
-              Navigator.of(context).pushNamed(
-                ItemResultScreen.routeName,
-                arguments: nameController.text,
-              );
-            },
-          ),
-        ],
+        ),
       ),
     );
   }
 }
-
-//   @override
-//   _AddItemState createState() => _AddItemState();
-// }
-
-// class _AddItemState extends State<AddItem> {
-//   String name;
-//   String category;
-//   String brand;
-//   String imgURL;
-//   String packageSize;
-//   String material;
-//   List<String> _sizes = [
-//     'Small (< 30 cm)',
-//     'Medium (< 0.5 m)',
-//     'Large (> 0.5 m)'
-//   ];
-//   @override
-//   Widget build(BuildContext context) {
-//     TextEditingController nameController;
-
-//     SingleChildScrollView(
-//       child: Container(
-//         padding: EdgeInsets.all(50),
-//         alignment: Alignment.topRight,
-//         child: Column(
-//           children: <Widget>[
-//             TextField(
-//               decoration: const InputDecoration(
-//                 hintText: 'What is this product called? *',
-//                 labelText: 'Name of Product *',
-//               ),
-//               controller:
-//                   nameController, // The validator receives the text that the user has entered.
-//             ),
-//             TextField(
-//               decoration: const InputDecoration(
-//                 hintText: 'What is the brand of this product?',
-//                 labelText: 'Brand',
-//               ), // The validator receives the text that the user has entered.
-//             ),
-//             TextField(
-//               decoration: const InputDecoration(
-//                 hintText: 'What is the material this product is made of *?',
-//                 labelText: 'Material *',
-//               ), // The validator receives the text that the user has entered.
-//             ),
-//             TextField(
-//               decoration: const InputDecoration(
-//                 hintText: 'Please enter an image url.',
-//                 labelText: 'Image URL *',
-//               ), // The validator receives the text that the user has entered.
-//             ),
-//             TextField(
-//               decoration: const InputDecoration(
-//                 hintText: 'Please enter a category.',
-//                 labelText: 'Category *',
-//               ), // The validator receives the text that the user has entered.
-//             ),
-//             Container(
-//                 child: DropdownButton(
-//               hint: Text(
-//                   'Please choose a Package Size'), // Not necessary for Option 1
-//               value: packageSize,
-//               onChanged: (newValue) {
-//                 setState(() {
-//                   packageSize = newValue;
-//                 });
-//               },
-//               items: _sizes.map((location) {
-//                 return DropdownMenuItem(
-//                   child: new Text(location),
-//                   value: location,
-//                 );
-//               }).toList(),
-//             )),
-//             RaisedButton(
-//               onPressed: () {
-//                 Navigator.of(context)
-//                     .pushNamed(ItemResultScreen.routeName, arguments: nameController.text);
-//               },
-//               child: Text('Submit'),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
