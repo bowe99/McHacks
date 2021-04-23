@@ -111,25 +111,37 @@ class _AddItemState extends State<AddItem> {
                 controller:
                     categoryController, // The validator receives the text that the user has entered.
               ),
-              Container(
-                padding: EdgeInsets.only(top: 50),
-                child: FloatingActionButton.extended(
-                  backgroundColor: Colors.lightGreen[800],
-                  onPressed: () async {
-                    setState(() {
-                      name = nameController.text;
-                      category = categoryController.text;
-                    });
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Container(
+                      padding: EdgeInsets.only(top: 50),
+                      child: FloatingActionButton.extended(
+                        backgroundColor: Colors.lightGreen[800],
+                        onPressed: () async {
+                          setState(() {
+                            name = nameController.text;
+                            category = categoryController.text;
+                          });
 
-                    await createItem();
-                  },
-                  label: Text('Submit',
-                      style: TextStyle(
-                          fontFamily: 'Montserrat-Regular',
-                          color: Colors.white,
-                          fontSize: 18)),
-                ),
-              )
+                          await createItem();
+                        },
+                        label: Text('Submit',
+                            style: TextStyle(
+                                fontFamily: 'Montserrat-Regular',
+                                color: Colors.white,
+                                fontSize: 18)),
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(top: 50),
+                      child: IconButton(
+                        onPressed: () {},
+                        icon: Icon(Icons.info, color: Colors.lightGreen[800]),
+                        iconSize: 55,
+                      ),
+                    ),
+                  ])
             ],
           ),
         ),
