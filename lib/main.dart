@@ -1,7 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:recycling_app/screens/add_item.dart';
-import 'package:recycling_app/screens/db_item_list_screen.dart';
+import 'package:recycling_app/screens/db_screen/db_item_list_screen.dart';
+import 'package:recycling_app/screens/db_screen/db_item_tab_screen.dart';
 import 'package:recycling_app/screens/item_list_screen.dart';
 import 'package:recycling_app/screens/item_result_screen.dart';
 import 'package:recycling_app/screens/item_tabs_screen.dart';
@@ -9,7 +10,6 @@ import 'package:flutter/services.dart';
 import 'package:recycling_app/screens/reduce_screen.dart';
 import 'package:recycling_app/screens/reuse_screen.dart';
 
-import 'package:recycling_app/screens/scan_screen.dart';
 import './screens/tabs_screen.dart';
 
 void main() async {
@@ -60,6 +60,7 @@ class _HomePageState extends State<HomePage> {
         ItemResultScreen.routeName: (ctx) => ItemResultScreen(),
         AddItem.routeName: (ctx) => AddItem(),
         DBItemListScreen.routeName: (ctx) => DBItemListScreen(),
+        DBItemTabScreen.routeName: (ctx) => DBItemTabScreen()
       },
     );
   }

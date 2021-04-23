@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:recycling_app/models/db_item.dart';
-import 'package:recycling_app/screens/db_item_list_screen.dart';
+import 'package:recycling_app/screens/db_screen/db_item_list_screen.dart';
 
 class SearchScreen extends StatefulWidget {
   @override
