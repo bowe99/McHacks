@@ -49,7 +49,7 @@ class _ItemTabScreenState extends State<ItemTabScreen> {
       appBar: AppBar(
         title: Text(
           _pages[_selectedPageIndex]['title'],
-          style: Theme.of(context).textTheme.body2
+          style: Theme.of(context).textTheme.bodyText2
         ),
         flexibleSpace: Container(
           decoration: BoxDecoration(

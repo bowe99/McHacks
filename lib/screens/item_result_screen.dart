@@ -28,7 +28,7 @@ class ItemResultScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Items Found', style: Theme.of(context).textTheme.body2),
+        title: Text('Items Found', style: Theme.of(context).textTheme.bodyText2),
         flexibleSpace: Container(
           decoration: BoxDecoration(
               gradient: LinearGradient(

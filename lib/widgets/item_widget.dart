@@ -61,7 +61,7 @@ class ItemWidget extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Image.network(url),
+            Image.asset(url),
             
             Container(
               width: double.infinity,
@@ -88,19 +88,19 @@ class ItemWidget extends StatelessWidget {
                     ),
                     Text(
                       'Brand: $brand',
-                      style: Theme.of(context).textTheme.body1,
+                      style: Theme.of(context).textTheme.bodyText1,
                     ),
                     Text(
                       'UPC: $barCode',
-                      style: Theme.of(context).textTheme.body1,
+                      style: Theme.of(context).textTheme.bodyText1,
                     ),
                     Text(
                       'Package Size: $packageSize',
-                      style: Theme.of(context).textTheme.body1,
+                      style: Theme.of(context).textTheme.bodyText1,
                     ),
                     Text(
                       'Material: $material',
-                      style: Theme.of(context).textTheme.body1,
+                      style: Theme.of(context).textTheme.bodyText1,
                     ),
                   ],
                 ),

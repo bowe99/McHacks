@@ -15,7 +15,10 @@ class _ReuseScreenState extends State<ReuseScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(project.name),
+        title: Text(
+          project.name,
+          style: Theme.of(context).textTheme.bodyText2,
+        ),
         flexibleSpace: Container(
           decoration: BoxDecoration(
               gradient: LinearGradient(

@@ -18,14 +18,15 @@ class _ReduceScreenState extends State<ReduceScreen> {
       appBar: AppBar(
         title: Text(
           productFound.name,
+          style: Theme.of(context).textTheme.bodyText2,
         ),
         flexibleSpace: Container(
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-                colors: <Color>[Colors.lightGreen[900], Colors.lime[200]])),
-      ),
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: <Color>[Colors.lightGreen[900], Colors.lime[200]])),
+        ),
       ),
       body: SingleChildScrollView(
         child: ProductItem(

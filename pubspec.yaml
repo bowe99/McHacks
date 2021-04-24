@@ -57,6 +57,8 @@ flutter:
     - assets/logo-01.png
     - assets/recycle3.png
     - assets/recycle1.png
+    - assets/canada_dry.jpg
+    - assets/apple.png
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
