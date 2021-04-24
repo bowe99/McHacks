@@ -29,7 +29,7 @@ class RecycleScreen extends StatelessWidget {
                   padding: EdgeInsets.all(20), 
                   child: Text(
                     location,
-                    style: TextStyle(fontFamily: 'Montserrat-SemiBold', color: Colors.lightGreen[900], fontSize: 24)
+                    style: TextStyle(fontFamily: 'Montserrat-SemiBold', color: Colors.lightGreen[900], fontSize: 20 )
                   ),
                 );
                 

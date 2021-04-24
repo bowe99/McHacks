@@ -45,15 +45,15 @@ class ProductItem extends StatelessWidget {
                 ),
                 Text(
                   'Price: $price',
-                  style: Theme.of(context).textTheme.body1,
+                  style: Theme.of(context).textTheme.bodyText1,
                 ),
                 Text(
                   'Name: $name',
-                  style: Theme.of(context).textTheme.body1,
+                  style: Theme.of(context).textTheme.bodyText1,
                 ),
                 Text(
                   'Link: $link',
-                  style: Theme.of(context).textTheme.body1,
+                  style: Theme.of(context).textTheme.bodyText1,
                 ),
               ],
             ),

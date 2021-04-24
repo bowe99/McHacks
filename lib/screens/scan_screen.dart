@@ -25,12 +25,11 @@ import '../models/recycle.dart';
 class ScanScreen extends StatefulWidget {
   static const itemList = [
     Item(
-      name: 'V8 Vegetable Cocktail',
+      name: 'Canada Dry',
       category: 'Metal',
       id: '06311055702',
-      url:
-          'https://firebasestorage.googleapis.com/v0/b/recyclemchacks.appspot.com/o/items%2Fv8.jpeg?alt=media&token=10768585-9de1-4f18-86e2-a81e326b1a12',
-      brand: 'Campbells',
+      url: 'assets/canada_dry.jpg',
+      brand: 'Canada Dry',
       material: 'Aluminium',
       packageSize: 'Small',
       recycleInfo: Recycle(
@@ -55,11 +54,10 @@ class ScanScreen extends StatefulWidget {
       ],
     ),
     Item(
-      name: 'Green Apple',
+      name: 'Apple',
       category: 'Fruit',
       id: 'YP7YXe8gfk0ebYTU3F5W',
-      url:
-          'https://firebasestorage.googleapis.com/v0/b/recyclemchacks.appspot.com/o/items%2Fapples.png?alt=media&token=9730ea2e-685c-41b7-b650-7d7f5bb726ab',
+      url: 'assets/apple.png',
       brand: 'NA',
       material: 'Organic',
       packageSize: 'Small',
@@ -70,20 +68,13 @@ class ScanScreen extends StatefulWidget {
           'Or make your own compost at home!'
         ],
       ),
-      listProducts: [
-        Product(
-          name: '',
-          description: '',
-          url:
-              'https://firebasestorage.googleapis.com/v0/b/recyclemchacks.appspot.com/o/products%2Fresuablecan.jpg?alt=media&token=5e36c6a1-8e24-41d7-aee0-878d7acf022c',
-        )
-      ],
+      listProducts: [],
       listProjects: [
         Project(
           name: 'Plant a tree!',
           descritption: 'Save apple seeds and start your own orchard!',
           url:
-              'https://q7i2y6d5.stackpathcdn.com/wp-content/uploads/2012/08/apple-tree1-400x534.jpg',
+              'https://firebasestorage.googleapis.com/v0/b/recyclemchacks.appspot.com/o/videos%2Fbig_buck_bunny.mp4?alt=media&token=024d702e-9e51-436d-94a5-21891d951aa8',
         )
       ],
     )
