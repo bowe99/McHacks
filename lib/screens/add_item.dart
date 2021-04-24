@@ -70,6 +70,7 @@ class _AddItemState extends State<AddItem> {
       'name': name
     }).then((value) {
       print("Item Added");
+      Navigator.pop(context);
     }).catchError((error) => print("Failed to add item: $error"));
   }
 
